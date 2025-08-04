@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "bun index.js"
+    "start": "bun index.js",
+    "startNode": "node index.js"
   },
   "keywords": [],
   "author": "",
