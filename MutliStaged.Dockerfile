@@ -13,4 +13,7 @@ COPY --from=deps /app/node_modules ./node_modules
 
 COPY . .
 
-ENTRYPOINT [ "bun", "run", "start" ]
+RUN cp entrypoint.sh /usr/local/bin/entrypoint.sh && \
+  chmod +x /usr/local/bin/entrypoint.sh
+
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
