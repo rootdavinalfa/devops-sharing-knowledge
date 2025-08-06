@@ -23,6 +23,23 @@ app.get('/', (req, res) => {
 });
 
 // Start the server
-app.listen(port, host, () => {
+const server = app.listen(port, host, () => {
   console.log(`Server is running on http://${host}:${port}`);
 });
+
+function shutdown(signal) {
+  console.log(`Received ${signal}. Shutting down gracefully...`);
+  server.close(() => {
+    console.log('Server closed');
+    process.exit(0);
+  });
+}
+
+// Handle graceful shutdown on SIGINT
+process.on('SIGINT', () => {
+  shutdown('SIGINT');
+});
+
+process.on('SIGTERM', () => {
+  shutdown('SIGTERM');
+})
